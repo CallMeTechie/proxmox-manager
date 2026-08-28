@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Eigenständige Verwaltung von Proxmox VE: VMs und LXC-Container erstellen, starten, stoppen und verwalten — direkt über die Proxmox REST-API.",
   "author": {
-    "name": "ma.backes"
+    "name": "CallMeTechie",
+    "url": "https://github.com/CallMeTechie"
   },
   "license": "MIT",
   "keywords": ["proxmox", "proxmox-ve", "virtualization", "vm", "lxc", "container", "homelab"]

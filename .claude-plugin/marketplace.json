@@ -1,7 +1,7 @@
 {
   "name": "proxmox-manager",
   "owner": {
-    "name": "ma.backes"
+    "name": "CallMeTechie"
   },
   "plugins": [
     {
