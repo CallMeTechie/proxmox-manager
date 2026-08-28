@@ -7,6 +7,7 @@ Befähigt Claude Code, **eigenständig virtuelle Maschinen (KVM) und LXC-Contain
 | Baustein | Zweck |
 | --- | --- |
 | MCP-Server `proxmox` | 17 Tools rund um Proxmox (`pve_create_vm`, `pve_create_container`, `pve_list_guests`, …) — **zero-dependency** (nur Python-Stdlib) |
+| `/proxmox` | **Onboarding/Einstieg:** erkennt beim ersten Aufruf, dass noch kein Host eingerichtet ist, und führt durch das komplette Setup; danach Cluster-Übersicht + Cheat-Sheet |
 | `/proxmox-setup` | Geführte Einrichtung: Host + API-Token konfigurieren, Verbindung testen |
 | `/proxmox-create-vm` | VM erstellen (Template-Klon mit Cloud-Init oder ISO-Installation) |
 | `/proxmox-create-ct` | LXC-Container erstellen (inkl. automatischem Appliance-Download) |
@@ -26,13 +27,7 @@ Befähigt Claude Code, **eigenständig virtuelle Maschinen (KVM) und LXC-Contain
 /plugin install proxmox-manager@proxmox-manager
 ```
 
-Danach in einer Claude-Code-Session:
-
-```text
-/proxmox-setup
-```
-
-Das Kommando fragt Host, Token-ID und Token-Secret ab (inkl. Schritt-für-Schritt-Anleitung zum Anlegen des Tokens in der Proxmox-Web-UI) und schreibt sie nach `~/.config/proxmox-mcp/config.env` (chmod 600). Der MCP-Server liest die Datei bei jedem Aufruf neu — ein Claude-Code-Neustart ist dafür nicht nötig. Nach Installation des Plugins empfiehlt sich aber ein Neustart, damit der MCP-Server geladen wird.
+Danach in einer Claude-Code-Session einfach **`/proxmox`** aufrufen: Das Onboarding erkennt, dass noch kein Host konfiguriert ist, fragt Host, Token-ID und Token-Secret ab (inkl. Schritt-für-Schritt-Anleitung zum Anlegen des Tokens in der Proxmox-Web-UI) und schreibt alles nach `~/.config/proxmox-mcp/config.env` (chmod 600). Der MCP-Server liest die Datei bei jedem Aufruf neu — für reine Config-Änderungen ist kein Claude-Code-Neustart nötig. Nach der Erstinstallation des Plugins empfiehlt sich aber ein Neustart, damit der MCP-Server geladen wird.
 
 ## Konfiguration
 

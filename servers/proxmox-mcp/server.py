@@ -221,19 +221,35 @@ def tool_list_storages(args: dict) -> dict:
     if node:
         storages = pve.get(f"/nodes/{node}/storage")
     else:
-        storages = pve.get("/storage")
-    rows = [
-        {
-            "storage": s.get("storage"),
-            "type": s.get("type"),
-            "content": s.get("content"),
-            "shared": bool(s.get("shared")),
-            "enabled": bool(s.get("enabled", True)),
-            "avail_gb": round(s.get("avail", 0) / 1e9, 1) if s.get("avail") else None,
-            "total_gb": round(s.get("total", 0) / 1e9, 1) if s.get("total") else None,
-        }
-        for s in storages
-    ]
+        # /storage (clusterweit) liefert keine Nutzungswerte — pro Node abfragen
+        storages = []
+        seen: set = set()
+        for n in pve.get("/nodes"):
+            for s in pve.get(f"/nodes/{n['node']}/storage"):
+                if s.get("storage") in seen:
+                    continue
+                if s.get("active") or s.get("enabled"):
+                    seen.add(s.get("storage"))
+                    storages.append(s)
+    rows = []
+    for s in storages:
+        def gb(key: str):
+            value = s.get(key)
+            return round(value / 1e9, 1) if isinstance(value, (int, float)) and value else None
+
+        rows.append(
+            {
+                "storage": s.get("storage"),
+                "type": s.get("type"),
+                "content": s.get("content"),
+                "shared": bool(s.get("shared")),
+                "enabled": bool(s.get("enabled")),
+                "active": bool(s.get("active")),
+                "used_gb": gb("used"),
+                "avail_gb": gb("avail"),
+                "total_gb": gb("total"),
+            }
+        )
     return {"storages": rows}
 
 
