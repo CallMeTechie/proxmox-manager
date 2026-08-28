@@ -23,9 +23,11 @@ Befähigt Claude Code, **eigenständig virtuelle Maschinen (KVM) und LXC-Contain
 ## Installation
 
 ```text
-/plugin marketplace add /root/proxmox-manager
+/plugin marketplace add CallMeTechie/proxmox-manager
 /plugin install proxmox-manager@proxmox-manager
 ```
+
+(Alternativ für lokale Entwicklung: `/plugin marketplace add /pfad/zum/lokalen/klon`.)
 
 Danach in einer Claude-Code-Session einfach **`/proxmox`** aufrufen: Das Onboarding erkennt, dass noch kein Host konfiguriert ist, fragt Host, Token-ID und Token-Secret ab (inkl. Schritt-für-Schritt-Anleitung zum Anlegen des Tokens in der Proxmox-Web-UI) und schreibt alles nach `~/.config/proxmox-mcp/config.env` (chmod 600). Der MCP-Server liest die Datei bei jedem Aufruf neu — für reine Config-Änderungen ist kein Claude-Code-Neustart nötig. Nach der Erstinstallation des Plugins empfiehlt sich aber ein Neustart, damit der MCP-Server geladen wird.
 
