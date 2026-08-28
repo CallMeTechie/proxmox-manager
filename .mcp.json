@@ -1,0 +1,12 @@
+{
+  "proxmox": {
+    "command": "python3",
+    "args": ["${CLAUDE_PLUGIN_ROOT}/servers/proxmox-mcp/server.py"],
+    "env": {
+      "PVE_HOST": "${PVE_HOST}",
+      "PVE_TOKEN_ID": "${PVE_TOKEN_ID}",
+      "PVE_TOKEN_SECRET": "${PVE_TOKEN_SECRET}",
+      "PVE_VERIFY_SSL": "${PVE_VERIFY_SSL}"
+    }
+  }
+}

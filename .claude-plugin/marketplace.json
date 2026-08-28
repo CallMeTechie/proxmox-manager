@@ -1,0 +1,13 @@
+{
+  "name": "proxmox-manager",
+  "owner": {
+    "name": "ma.backes"
+  },
+  "plugins": [
+    {
+      "name": "proxmox-manager",
+      "source": "./",
+      "description": "VMs und LXC-Container in Proxmox VE eigenständig erstellen und verwalten (REST-API + API-Token)."
+    }
+  ]
+}
